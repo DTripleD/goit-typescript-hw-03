@@ -22,7 +22,7 @@ class Person {
 abstract class House {
   protected door: boolean;
   protected key: Key;
-  protected tenants: Person[] = [];
+  private tenants: Person[] = [];
 
   constructor(key: Key) {
     this.door = false;
@@ -32,10 +32,7 @@ abstract class House {
   abstract openDoor(key: Key): void;
 
   comeIn(person: Person): void {
-    if (
-      this.door &&
-      this.key.getSignature() === person.getKey().getSignature()
-    ) {
+    if (this.door) {
       this.tenants.push(person);
       console.log(`Welcome home, ${person.getKey().getSignature()}!`);
     } else {
